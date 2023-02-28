@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     class User extends Model {
         comparePassword(pwd) {
             return bcrypt.compare(pwd, this.password);
-        };
+        }
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -53,9 +53,8 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 type: DataTypes.STRING,
             },
-            location: {
+            role: {
                 allowNull: false,
-                unique: true,
                 type: DataTypes.STRING,
             },
             password: {
@@ -63,6 +62,10 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
             },
             isVerified: {
+                defaultValue: false,
+                type: DataTypes.BOOLEAN,
+            },
+            isActive: {
                 defaultValue: false,
                 type: DataTypes.BOOLEAN,
             },

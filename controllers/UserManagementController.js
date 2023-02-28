@@ -22,7 +22,11 @@ module.exports = {
                             [Op.like]: `%${search}%`,
                         },
                     },
-                    // { role: search },
+                    {
+                        role: {
+                            [Op.like]: `%${search}%`,
+                        },
+                    },
                     {
                         lastName: {
                             [Op.like]: `%${search}%`,
