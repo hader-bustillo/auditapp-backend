@@ -11,11 +11,17 @@ module.exports = {
         const offset = limit && page ? (page - 1) * limit : null;
         const query = {
             limit,
+            where: {
+                role: {
+                    [Op.not]: 'admin',
+                },
+            },
         };
 
         if (offset) query.offset = offset;
         if (search) {
             query.where = {
+                ...query.where,
                 [Op.or]: [
                     {
                         email: {
@@ -42,7 +48,7 @@ module.exports = {
         }
 
         try {
-            const users = await User.findAll(query);
+            const users = await User.findAndCountAll(query);
             return res.send({
                 users,
             });
