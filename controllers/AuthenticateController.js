@@ -11,7 +11,10 @@ function jwtSignUser(user) {
 module.exports = {
     async register(req, res) {
         try {
-            await User.create(req.body);
+            await User.create({
+                ...req.body,
+                role: 'auditor',
+            });
             return res.send({
                 message: 'User created successfully',
             });
