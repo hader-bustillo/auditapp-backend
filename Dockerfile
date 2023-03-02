@@ -8,4 +8,5 @@ FROM public.ecr.aws/docker/library/node:16-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-ENTRYPOINT npm run start
+CMD ["npx", "sequelize db:migrate"]
+ENTRYPOINT ["npm", "run start"]
