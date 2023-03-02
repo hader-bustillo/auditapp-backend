@@ -29,10 +29,5 @@ module.exports = (app) => {
         UserAuthenticatedMiddleware.userAuthenticated,
         UserManagementController.getUsers
     );
-    app.get(
-        '/api/get-users-csv',
-        UserAuthenticatedMiddleware.userAuthenticated,
-        UserManagementController.getUsersCSV
-    );
     require('./error')(app);
 };
